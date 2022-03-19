@@ -5,20 +5,20 @@ services:
   - docker
 
 before_install:
-  - docker build -t hartw/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t melkfett/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true hartw/react-test npm test
+  - docker run -e CI=true melkfett/react-test npm test
 
 after_success:
-  - docker build -t hartw/multi-client ./client
-  - docker build -t hartw/multi-nginx ./nginx
-  - docker build -t hartw/multi-server ./server
-  - docker build -t hartw/multi-worker ./worker
+  - docker build -t melkfett/multi-client ./client
+  - docker build -t melkfett/multi-nginx ./nginx
+  - docker build -t melkfett/multi-server ./server
+  - docker build -t melkfett/multi-worker ./worker
   # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Take those images and push them to docker hub
-  - docker push hartw/multi-client
-  - docker push hartw/multi-nginx
-  - docker push hartw/multi-server
-  - docker push hartw/multi-worker
+  - docker push melkfett/multi-client
+  - docker push melkfett/multi-nginx
+  - docker push melkfett/multi-server
+  - docker push melkfett/multi-worker
