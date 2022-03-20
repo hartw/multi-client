@@ -16,7 +16,7 @@ after_success:
   - docker build -t melkfett/multi-server ./server
   - docker build -t melkfett/multi-worker ./worker
   # Log in to the docker CLI
-  - echo "7976c3a8-7fec-4292-abcc-fab2c9f88bd5" | docker login -u "melkfett" --password-stdin
+  - echo "$DOCKER_PASSWORD" | docker login -u "melkfett" --password-stdin
   # Take those images and push them to docker hub
   - docker push melkfett/multi-client
   - docker push melkfett/multi-nginx
